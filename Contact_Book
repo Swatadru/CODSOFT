@@ -1,0 +1,73 @@
+#ContactBook
+#SP_PROFESSIONAL
+class Contact:
+    def __init__(self,name,phone,email,address):
+        self.name=name
+        self.phone=phone
+        self.email=email
+        self.address=address
+def menu():
+    print("1. Add Contact")
+    print("2. View List")
+    print("3. Update Contact")
+    print("4. Delete Contact")
+    print("5. Search")
+    print("6. Quit")
+def add(contacts):
+    name=input("Enter name : ")
+    phone=input("Enter phone number")
+    email=input("Enter email : ")
+    address = input("Enter address : ")
+    contacts[name]=Contact(name,phone,email,address)
+def view(contacts):
+    print("Contact List : ")
+    for name,contact in contacts.items():
+        print(name,":",contact.phone,":",contact.email,":",contact.address)
+def search(contacts):
+    np=input("Enter name or phone number : ")
+    found=False
+    for name,contact in contact.items():
+        if np == name or np == contact.phone:
+            print("Name : ", name)
+            print("Phone : ", contact.phone)
+            print("Email : ", contact.email)
+            print("Address : ", contact.address)
+            found = True
+    if not found:
+        print("Details not found.")
+def delete(contacts):
+    name=input("Enter name to delete:")
+    if name not in contacts:
+        print("Contact not found")
+        return
+    else:
+        del contacts[name]
+def update(contacts):
+    name=input("Enter name to update:")
+    if name not in contacts:
+        print("Not found")
+        return
+    else:
+        phone=input("Enter phone number : ")
+        email=input("Enter email : ")
+        address = input("Enter address : ")
+        contacts[name]=Contact(name,phone,email,address)
+def main():
+    contacts={}
+    menu()
+    while True:
+        choice=int(input("Enter choice:"))
+        if choice==1:
+            add(contacts)
+        if choice==2:
+            view(contacts)
+        if choice==3:
+            update(contacts)
+        if choice==4:
+            delete(contacts)
+        if choice==5:
+            search(contacts)
+        if choice==6:
+            break
+if __name__=="__main__":
+    main()
